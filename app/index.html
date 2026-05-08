@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0a3520">
+    <title>Texas Hold'em — Spixi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ── Lobby Screen ───────────────────────────────────────────────────── -->
+<div id="screen-lobby" class="screen">
+    <div class="lobby-topbar">
+        <button class="btn-icon" onclick="SpixiAppSdk.back()">✕ Leave</button>
+    </div>
+    <div class="lobby-title">♠ Texas Hold'em ♠</div>
+    <div class="lobby-subtitle">Powered by Spixi · Ixian Network</div>
+
+    <div class="lobby-card">
+        <h3>Players at the table</h3>
+        <ul id="lobby-players">
+            <li><span class="player-dot"></span> Waiting for players… <span class="chip-count">—</span></li>
+        </ul>
+    </div>
+
+    <button id="btn-start" class="btn-primary" onclick="GameProtocol.startGame()" style="display:none">
+        ▶ Start Game
+    </button>
+    <p id="wait-msg">Waiting for the host to start…</p>
+</div>
+
+<!-- ── Game Screen ────────────────────────────────────────────────────── -->
+<div id="screen-game" class="screen">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <span class="top-bar-title">♠ TEXAS HOLD'EM</span>
+        <div style="display:flex;gap:6px">
+            <button id="btn-chat" class="btn-icon" onclick="App.toggleChat()">💬</button>
+        </div>
+    </div>
+
+    <!-- Table area -->
+    <div class="table-area">
+        <!-- Oval felt -->
+        <div class="table-oval"></div>
+
+        <!-- Opponent seats (positioned by JS) -->
+        <div id="player-seats"></div>
+
+        <!-- Pot -->
+        <div id="pot-display">Pot: 0</div>
+
+        <!-- Community cards -->
+        <div id="community-cards"></div>
+
+        <!-- Log -->
+        <div class="log-panel">
+            <div id="game-log"></div>
+        </div>
+    </div>
+
+    <!-- My area (bottom) -->
+    <div class="my-area">
+        <div class="my-row">
+            <div id="my-cards">
+                <div class="card face-down">🂠</div>
+                <div class="card face-down">🂠</div>
+            </div>
+            <div id="my-info" style="font-size:0.85rem;color:#f0c040;font-weight:700;">— chips</div>
+        </div>
+
+        <!-- Raise slider -->
+        <div class="raise-row" id="raise-row">
+            <label>Raise</label>
+            <input type="range" id="raise-slider" min="20" max="1000" value="40" oninput="App.updateRaiseDisplay()">
+            <span id="raise-amount">40</span>
+        </div>
+
+        <!-- Action buttons -->
+        <div id="actions" style="display:none">
+            <button class="btn-action btn-fold"  onclick="App.fold()">Fold</button>
+            <button class="btn-action btn-check" id="btn-call" onclick="App.call()">Check</button>
+            <button class="btn-action btn-raise" onclick="App.raise()">Raise</button>
+            <button class="btn-action btn-allin" onclick="App.allIn()">All In</button>
+        </div>
+    </div>
+
+    <!-- Chat panel -->
+    <div id="chat-panel">
+        <div class="chat-header">
+            💬 Chat
+            <button class="btn-icon" onclick="App.toggleChat()" style="font-size:0.75rem;padding:3px 8px">✕</button>
+        </div>
+        <div id="chat-log"></div>
+        <div class="chat-input-row">
+            <input id="chat-input" type="text" placeholder="Say something…"
+                onkeydown="if(event.key==='Enter')App.sendChat()">
+            <button class="btn-send" onclick="App.sendChat()">→</button>
+        </div>
+    </div>
+
+    <!-- Result banner -->
+    <div id="result-banner"></div>
+</div>
+
+<!-- Scripts: load order matters -->
+<script src="js/spixi-app-sdk.js"></script>
+<script src="js/spixi-tools.js"></script>
+<script src="js/poker-engine.js"></script>
+<script src="js/game-protocol.js"></script>
+<script src="js/app.js"></script>
+<!-- Mock SDK must come after game-protocol so it can call GameProtocol -->
+<script src="js/mock-sdk.js"></script>
+
+</body>
+</html>

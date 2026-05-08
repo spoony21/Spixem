@@ -1,0 +1,6 @@
+caVersion = 0
+id = com.spixem.texasholdem
+publisher = Spixem
+name = Texas Hold'em
+version = 1.0.0
+capabilities = multiUser
