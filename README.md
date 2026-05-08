@@ -29,14 +29,7 @@ The **mock SDK** activates automatically outside Spixi and:
 - Simulates the full P2P messaging layer
 - Stores data in `localStorage`
 
-The player with the lexicographically-first address is the **host** (marked 👑). In browser mode the mock gives you the last address so the AIs act as host.
-
-## Deploying to Spixi
-
-1. Install the [Spixi app](https://www.spixi.io/)
-2. Pack the app using https://apps.spixi.io/packer (drag the `texas-holdem/` folder)
-3. Install the generated `.zspixiapp` file in Spixi
-4. Share a session with friends — everyone joins the same chat/channel and the app opens for all
+The player with the lexicographically-first address is the **host** (marked 👑). In browser mode the m
 
 ## Game Rules
 
