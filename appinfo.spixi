@@ -1,8 +1,0 @@
-caVersion = 0
-id = com.spixem.texasholdem
-publisher = spoony
-name = Spix'em
-version = 1.0.0
-capabilities = multiUser
-minUsers = 2
-maxUsers = 6
